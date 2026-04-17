@@ -1,0 +1,27 @@
+09/04/2026
+
+1. The "Signal" (Database)
+When the SOS is pressed, your app saves a record to the Supabase alerts table. This is the official "trigger" that tells the system an emergency is happening.
+
+2. Track A: The "Radio" (Realtime)
+How: Supabase acts like a radio tower. Because your app has a "Listener" turned on, Supabase broadcasts the data to every active device on the global-alerts channel.
+
+Result: If a responder has the app open, they get an instant popup and vibration. This is the fastest way to communicate.
+
+3. Track B: The "Wake-up Call" (Push Notifications)
+How: If the responder's phone is in their pocket or the app is closed, the "Radio" won't reach them. Instead, your app tells Expo's servers to send a notification.
+
+Result: Expo sends a signal to Google or Apple, which forces the phone to light up with a lock-screen notification.
+
+Why the New York vs. Taiwan thing happens:
+Right now, you are using a Global Frequency. It’s like a walkie-talkie where everyone in the world is on Channel 1.
+
+Taiwan user transmits on Channel 1.
+
+New York user is listening on Channel 1.
+
+Result: The New York user hears the "broadcast" because they are tuned to the same global frequency.
+
+Summary: 1. Supabase holds the data.
+2. Realtime handles users who are currently using the app.
+3. Push Notifications handle users who have their phones put away.

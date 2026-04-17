@@ -1,0 +1,23 @@
+# Standard excludes
+
+node_modules
+.expo
+dist
+build
+
+# Supabase (Vercel doesn't need your local SQL migrations/config)
+
+supabase/
+.supabase/
+
+# Documentation & Git
+
+.git
+.gitignore
+README.md
+HotSOS_Documentation.pdf
+
+# Env files (Vercel uses its own Environment Variables UI)
+
+.env
+.env.\*

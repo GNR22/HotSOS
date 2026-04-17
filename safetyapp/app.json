@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "HotSOS",
+    "slug": "safetyapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "hotsos",
+    "icon": "./assets/images/SOS.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/SOS.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#121212"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ryan.hotsos"
+    },
+    "android": {
+      "package": "com.ryan.hotsos",
+      "permissions": [
+        "SEND_SMS",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "VIBRATE",
+        "INTERNET",
+        "CAMERA"
+      ],
+      "intentFilters": [
+        {
+          "action": "android.intent.action.SENDTO",
+          "data": { "scheme": "smsto" }
+        }
+      ]
+    },
+    "plugins": ["expo-location", "expo-dev-client"],
+    "extra": {
+      "eas": {
+        "projectId": "7b2f0bee-b58a-4a15-a071-d54ab6ce2e5e"
+      }
+    }
+  }
+}
