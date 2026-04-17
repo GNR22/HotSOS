@@ -28,7 +28,6 @@ The goal of HotSOS is to provide a **fast, reliable emergency communication syst
 #### **Utilities & Config**
 
 - **`utils/supabase.js`**: Centralized Supabase client configuration for database and storage access.
-- **`utils/notificationHelper.js`**: Logic for managing device permissions and dispatching alerts to the Expo Push API.
 - **`app.json`**: Global manifest for app permissions, naming, and deployment settings.
 
 ---
@@ -111,7 +110,7 @@ Use this workflow when you want to **see changes instantly on your phone while c
 ### Step 1 — Build the Development Client (One Time)
 
 ```bash
-npx eas build --profile development --platform android
+npx eas build --profile development --platform android --clear-cache
 ```
 
 Download and install the generated **APK** on your phone.
@@ -121,7 +120,7 @@ Download and install the generated **APK** on your phone.
 ### Step 2 — Start the Development Server
 
 ```bash
-npm run start-clean
+npx expo start --dev-client -c
 ```
 
 Keep the development app open on your phone.
@@ -173,7 +172,7 @@ If your phone cannot detect your laptop:
 **Just run this**
 
 ```bash
-npx expo start --host lan --scheme hotsos
+npx expo start --host lan --scheme hotsos --clear
 ```
 
 **scan the qr code or manually enter the ip address from metro**
@@ -517,10 +516,7 @@ Testing requires building a **Custom Development Client**.
 npx eas build --profile development --platform android
 ```
 
-The generated APK includes the required:
-
-- `google-services.json`
-- Firebase messaging configuration
+The generated APK is bundled with the native push notification credentials configured in the Expo Dashboard. This enables the device to communicate with Google's messaging infrastructure without needing the standard Expo Go sandbox.
 
 This enables the device to communicate with **Google's push messaging infrastructure**.
 
@@ -571,6 +567,16 @@ On certain Android devices, aggressive battery saving may silence notifications 
 **Technical Context**
 
 ## This is an OS-level behavior that requires specialized "High Priority" channel configuration and FCM (Firebase) in production builds.
+
+## 5️⃣ Device Compatibility
+
+**Limitation**
+
+The application is not compatible with iPhone (iOS). It is functionally restricted to Android devices.
+
+**Technical Context**
+
+This incompatibility is due to Apple's restrictive ecosystem. Implementing push notifications on iOS requires a paid Apple Developer Program membership and the configuration of APNs (Apple Push Notification service) certificates. Additionally, background GPS tracking on iOS requires different native permissions and background mode handling that are not currently integrated into the HotSOS architecture.
 
 # ⚙️ Essential Database Configuration
 
